@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdivinadorNumericoComponent } from './page/adivinador-numerico/adivinador-numerico.component';
+import { ErrorComponent } from './page/error/error.component';
 import { HomeComponent } from './page/home/home.component';
 import { LoginComponent } from './page/login/login.component';
 import { PiedraPapelTijeraComponent } from './page/piedra-papel-tijera/piedra-papel-tijera.component';
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path:"registrar",component:RegistroComponent},
   {path:"piedraPapelTijera", component:PiedraPapelTijeraComponent},
   {path:"tateti", component:TatetiComponent},
-  {path:"", component:HomeComponent}
+  {path:"adivinadorNumerico", component:AdivinadorNumericoComponent},
+  {path:"", component:HomeComponent},
+  {path:"**", component:ErrorComponent}
   
 ];
 

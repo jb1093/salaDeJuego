@@ -1,0 +1,20 @@
+<br>
+<br>
+<br>
+<h1>ADIVINADOR NUMÉRICO</h1>
+
+<h2>¿Que numero estoy pensando?(del 1 al 100)</h2>
+<input type="button" value="INICIAR" (click)="numeroaleatorio()"> 
+<input type="button" value="SALIR" routerLink="/inicio" routerLinkActive="active">
+<br><br>
+<input type="text" placeholder="posible numero" [(ngModel)]="numAux" >
+<input type="button" value="PROBAR" (click)="jugar()"> 
+
+<div *ngIf="valor">
+    <p *ngIf="parametro">Incorrecto... es un numero MAYOR</p>
+    <p *ngIf="!parametro">Incorrecto... es un numero MENOR</p>
+    
+</div>
+<p *ngIf="ganar">GANASTE!!</p>
+
+

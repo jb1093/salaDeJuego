@@ -11,6 +11,8 @@ import { RegistroComponent } from './page/registro/registro.component';
 import { PiedraPapelTijeraComponent } from './page/piedra-papel-tijera/piedra-papel-tijera.component';
 import { FormsModule } from '@angular/forms';
 import { TatetiComponent } from './page/tateti/tateti.component';
+import { AdivinadorNumericoComponent } from './page/adivinador-numerico/adivinador-numerico.component';
+import { ErrorComponent } from './page/error/error.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TatetiComponent } from './page/tateti/tateti.component';
     QuienSoyComponent,
     RegistroComponent,
     PiedraPapelTijeraComponent,
-    TatetiComponent
+    TatetiComponent,
+    AdivinadorNumericoComponent,
+    ErrorComponent
     
   ],
   imports: [
