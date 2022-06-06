@@ -1,0 +1,43 @@
+<body>
+<br>
+<br>
+<br>
+<h1>PIEDRA PAPEL O TIJERA</h1>
+<div class="score-board">
+    <div id="user-label" class="badge">PERSONA</div>
+    <div id="comp-label" class="badge">MAQUINA</div>
+    <span id="user-score">{{personaContador}}</span>:<span id="comp-score">{{maquinaContador}}</span>
+  </div>
+  
+<div class="opciones">
+
+    <div class="opEntrada">
+        <img src="../assets/piedra.png" alt="" style="width: 30%; height: 300px;" *ngIf="jugadaP1">
+        <img src="../assets/papel.png" alt="" style="width: 30%; height: 300px;" *ngIf="jugadaP2">
+        <img src="../assets/tijera.png" alt="" style="width: 30%; height: 300px;" *ngIf="jugadaP3">
+    </div>
+    <img src="../assets/ganaM.gif" *ngIf="ganaM" style="width: 30%; height: 300px; border-radius:5px;">
+    <img src="../assets/ganaP.gif" *ngIf="ganaP" style="width: 30%; height: 300px; border-radius:5px;">
+    <div class="opEntrada">
+        <img src="../assets/piedra.png" alt="" style="width: 30%; height: 300px;" *ngIf="parametro1">
+        <img src="../assets/papel.png" alt="" style="width: 30%; height: 300px;" *ngIf="parametro2">
+        <img src="../assets/tijera.png" alt="" style="width: 30%; height: 300px;" *ngIf="parametro3">
+    </div>
+
+</div>
+<div class="jugada">
+    <input type="radio" name="jugar" value="1" [(ngModel)]="variable" >PIEDRA
+    <input type="radio" name="jugar" value="2" [(ngModel)]="variable" >PAPEL
+    <input type="radio" name="jugar" value="3" [(ngModel)]="variable">TIJERA
+
+    <input type="button" value="JUGAR" (click)="partidaPPT()" *ngIf="desactivarBoton">
+
+    <h2 *ngIf="gp">PUNTO PERSONA</h2>
+    <h2 *ngIf="gm">PUNTO MAQUINA</h2>
+    <h2 *ngIf="emp">EMPATE</h2>
+    <h2 *ngIf="ganaP">GANA PERSONA</h2>
+    <h2 *ngIf="ganaM">GANA MAQUINA</h2>
+</div>
+<input class="jugada" id="reiniciarbtn" type="button" value="REINICIAR" (click)="reiniciarPPT()">
+</body>
+
