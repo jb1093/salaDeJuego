@@ -1,23 +1,23 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component} from '@angular/core';
+import { QuienSoyService } from 'src/app/service/quien-soy.service';
 
 @Component({
   selector: 'app-quien-soy',
   templateUrl: './quien-soy.component.html',
   styleUrls: ['./quien-soy.component.css']
 })
-export class QuienSoyComponent implements OnInit {
-  //urlAppi: string ='https://github.com/jb1093';
-  //quiensoy:any;
+export class QuienSoyComponent {
+  quiensoy:any;
   
-  constructor(/*private miHTTP: HttpClient*/) { 
-    //this.quiensoy=[];
+  constructor(private miServicio:QuienSoyService) { 
+    this.miServicio.retornarPerfil().subscribe(perfil =>{
+                                                          //console.info("servicio: ", perfil);
+                                                          this.quiensoy=perfil;
+                                                          console.info("perfil", this.quiensoy);
+                                                        });
   }
 
-  /*retornarPerfil():Observable<any>{
-    return this.miHTTP.get(this.urlAppi+"all");
-  }*/
+  
 
   ngOnInit(): void {
   }
