@@ -1,36 +1,47 @@
+<br>
 <body class="text-center">
         
     <main class="form-signin">
-      <div>
-        <img class="mb-4" src="../assets/registrar.png" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Please registrece</h1>
-    
-        <div class="form-floating">
-            <label for="floatingInput">Email address</label>
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="auxusuario">
-          
-        </div>
-        <div class="form-floating">
-            <label for="floatingPassword">Password</label>
-            <p *ngIf="validar">Error al cargar las contraseñas, vuelva a intentar</p>
-            <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="auxclave1" placeholder="Password" >
-            <!--input class="validacion" *ngIf!="validar" type="password"  id="floatingPassword" [(ngModel)]="auxclave1" placeholder="Password"-->
-          
-        </div>
-        <div class="form-floating">
-            <label for="floatingPassword">Repetir Password</label>
-            <input type="password" class="form-control" id="floatingPassword1" [(ngModel)]="auxclave2" placeholder="Password">
-            <!--input class="validacion" *ngIf!="validar" type="password"  id="floatingPassword1" [(ngModel)]="auxclave2" placeholder="Password"-->
-            
+     <form [formGroup]="forma" (ngSubmit)="aceptar()"> 
+        <div>
+          <img class="mb-4" src="../assets/registrar.png" alt="" width="72" height="57">
+          <h1 class="h3 mb-3 fw-normal">Por favor registrece</h1>
+      
+          <div class="form-floating">
+              <label for="floatingInput">Email address</label>
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  formControlName="email">
+            <small class="invalid" *ngIf="forma.controls['email'].errors?.['required'] &&
+            forma.controls['email'].touched">El email es requerido</small>
           </div>
-    
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" (click)="registrar()">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-    </div>
+          <div class="form-floating">
+              <label for="floatingPassword">Password</label>
+              <p class="invalid" *ngIf="validar">Error al cargar las contraseñas, vuelva a intentar</p>
+              <input type="password" class="form-control" id="floatingPassword"  placeholder="Password" formControlName="password" >
+              <small class="invalid"
+              *ngIf="forma.controls['password'].errors?.['required'] &&
+              forma.controls['password'].touched">
+              El password es requerido
+            </small>
+          </div>
+          <div class="form-floating">
+              <label for="floatingPassword">Repetir Password</label>
+              <input type="password" class="form-control" id="floatingPassword1" placeholder="Password" formControlName="pwd">
+              <small class="invalid"
+              *ngIf="forma.controls['pwd'].errors?.['required'] &&
+              forma.controls['pwd'].touched">
+              El password es requerido
+            </small>
+              
+            </div>
+      
+          <!--div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div-->
+          <button type="submit" class="w-100 btn btn-lg btn-primary" (click)="registrar()"  [disabled]="forma.invalid">Sign in</button>
+          <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+      </div>
+  </form>
     </main>
 </body>

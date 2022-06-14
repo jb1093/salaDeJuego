@@ -8,7 +8,7 @@ import { HomeComponent } from './page/home/home.component';
 import { QuienSoyComponent } from './page/quien-soy/quien-soy.component';
 import { RegistroComponent } from './page/registro/registro.component';
 import { PiedraPapelTijeraComponent } from './page/piedra-papel-tijera/piedra-papel-tijera.component';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TatetiComponent } from './page/tateti/tateti.component';
 import { AdivinadorNumericoComponent } from './page/adivinador-numerico/adivinador-numerico.component';
 import { ErrorComponent } from './page/error/error.component';
@@ -31,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
     
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }],
