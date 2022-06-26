@@ -9,12 +9,12 @@ export class QuienSoyService {
   urlAppi: string ='https://api.github.com/users/jb1093';
   quiensoy:any;
   //avatar_url: string;
-  //name: string;
+  //name: any;
   
   constructor(private miHTTP: HttpClient) {
     this.quiensoy=[];//no llama al array 
     //this.avatar_url=miHTTP["avatar_url"];
-    //this.name=this.quiensoy["name"];
+    //this.name=this.quiensoy[this.name];
   }
  
   retornarPerfil(){

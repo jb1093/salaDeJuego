@@ -11,17 +11,12 @@ import { Usuarios } from 'src/app/clases/usuarios';
 export class RegistroComponent implements OnInit {
   
   public forma: FormGroup;
-  auxusuario: string;
-  auxclave1: string;
-  auxclave2: string; 
   miUsuario:Usuarios;
   validar:boolean;
+  registro=0;
   
   
   public constructor(private miRouter:Router, private fb:FormBuilder) {
-    this.auxusuario="";
-    this.auxclave1="";
-    this.auxclave2="";
     this.miUsuario=new Usuarios();
     this.validar=false;
    
@@ -45,23 +40,33 @@ export class RegistroComponent implements OnInit {
  
   registrar(){
     //console.info("forma",this.forma.value.pwd);
-    if(this.forma.value.password==this.forma.value.pwd){
+    var listadousuario=[];
+    var validoUsuario=0;
+    listadousuario = JSON.parse(localStorage.getItem("listado") || "{}");
+        
+      if(Object.entries(listadousuario).length!=0){
+        listadousuario.forEach((element: any): void =>{
+          if(element.nombre==this.forma.value.email){
+            console.log("ya se encuentra registrado");
+            validoUsuario=1;
+          }
+        });
+      }
     
-      this.miUsuario.nombre=this.forma.value.email;
-      this.miUsuario.clave=this.forma.value.pwd;
-
-      this.miUsuario.guardar(); 
-      console.log("Datos guardados!!");
-      this.validar=false;
-      this.miRouter.navigate(["/inicio"]);
-      console.log("Datos correctos");
-      
-
-    }else{
-      console.log("Datos incorrectos");
-      this.validar=true;
-      
-    }
+        if(validoUsuario==1){
+          this.registro=1;
+        }else if (this.forma.value.password==this.forma.value.pwd){
+                this.miUsuario.nombre=this.forma.value.email;
+                this.miUsuario.clave=this.forma.value.pwd;
+                this.miUsuario.guardar(); 
+                this.validar=false;
+                this.miRouter.navigate(["/inicio"]);
+                console.log("Datos guardados!!");
+        }else{
+          console.log("Datos incorrectos");
+          this.validar=true;
+        }
+    
 
   }
 

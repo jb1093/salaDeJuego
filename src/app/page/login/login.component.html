@@ -1,18 +1,26 @@
+<br><br>
 <body class="text-center">
         
   <main class="form-signin">
-    <form>
+    <form [formGroup]="forma" (ngSubmit)="aceptar()">
       <img class="mb-4" src="../assets/login.png"  alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Please Logueate</h1>
+      <h1 class="h3 mb-3 fw-normal">Por favor Logueese</h1>
       <p *ngIf="validar">Error, compruebe que los datos sean correctos</p>
       <div class="form-floating">
         <label for="floatingInput">Email address</label>
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="auxUsuario" [(ngModel)]="auxUsuario" >
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  formControlName="email">
+            <small class="invalid" *ngIf="forma.controls['email'].errors?.['required'] &&
+            forma.controls['email'].touched">El email es requerido</small>
         
       </div>
       <div class="form-floating">
         <label for="floatingPassword">Password</label>
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="auxPass" [(ngModel)]="auxPass" >
+        <input type="password" class="form-control" id="floatingPassword"  placeholder="Password" formControlName="password" >
+              <small class="invalid"
+              *ngIf="forma.controls['password'].errors?.['required'] &&
+              forma.controls['password'].touched">
+              El password es requerido
+            </small>
         
       </div>
   
@@ -25,7 +33,7 @@
           <a routerLink="/registrar" routerLinkActive="active">Registrarme</a>
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="enviar()">Sign in</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="enviar()" [disabled]="forma.invalid">Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
   </main>

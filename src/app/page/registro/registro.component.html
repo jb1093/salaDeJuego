@@ -13,6 +13,7 @@
             <small class="invalid" *ngIf="forma.controls['email'].errors?.['required'] &&
             forma.controls['email'].touched">El email es requerido</small>
           </div>
+          <p class="invalid" *ngIf="registro">Usted ya se encuentra registrado, vaya a login</p>
           <div class="form-floating">
               <label for="floatingPassword">Password</label>
               <p class="invalid" *ngIf="validar">Error al cargar las contraseñas, vuelva a intentar</p>
