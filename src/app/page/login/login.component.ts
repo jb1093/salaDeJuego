@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuarios } from 'src/app/clases/usuarios';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-login',
@@ -11,11 +14,16 @@ import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from
 export class LoginComponent implements OnInit {
   public forma:FormGroup;
   miUsuario:Usuarios;
-
   validar:boolean;
+  today: Date = new Date();
+  pipe = new DatePipe('en-US');
+ 
+ 
+
   constructor(private miRouter: Router, private fb:FormBuilder) { 
     this.miUsuario=new Usuarios();
     this.validar=false;
+ 
 
     this.forma=this.fb.group({
       'email': ['', [Validators.required, Validators.email]],
@@ -44,7 +52,17 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+    this.guardarUsuario();
   }
+
+  guardarUsuario(){
+    
+    this.miUsuario.nombre=this.forma.value.email;
+    this.miUsuario.horario= this.pipe.transform(Date.now(), 'dd/MM/yyyy, h:mm:ss a');
+    this.miUsuario.guardarUsuarioLogueado();
+  }
+
+  
 
   ngOnInit(): void {
   }

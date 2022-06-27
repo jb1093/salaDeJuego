@@ -1,9 +1,12 @@
+import { getLocaleDateFormat } from "@angular/common";
 export class Usuarios {
     nombre:string;
     clave:string;
+    horario:any;
     constructor(){
         this.nombre="";
         this.clave="";
+        this.horario=null;
     }
 
     guardar(){
@@ -21,5 +24,16 @@ export class Usuarios {
         listadousuario.push(this);
         //Actualizo la matrizJSON en el localStorage
         localStorage.setItem('listado',JSON.stringify(listadousuario));
+    }
+
+    guardarUsuarioLogueado(){
+        var usuarioLogueadoListado=[];
+        if(localStorage.getItem("usuarioListado")===null){
+            usuarioLogueadoListado=[];
+        }else{
+            usuarioLogueadoListado=JSON.parse(localStorage.getItem("usuarioListado") || "{}");
+        }
+        usuarioLogueadoListado.push(this);
+        localStorage.setItem('usuarioListado',JSON.stringify(usuarioLogueadoListado));
     }
 }
