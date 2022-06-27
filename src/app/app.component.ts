@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsuarioLogueadoService } from './servicios/usuario-logueado.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'salaDeJuegos';
+  constructor(public miServicio:UsuarioLogueadoService){}
 }

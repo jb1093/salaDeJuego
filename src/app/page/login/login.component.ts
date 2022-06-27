@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { Usuarios } from 'src/app/clases/usuarios';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-
-
+import { UsuarioLogueadoService } from 'src/app/servicios/usuario-logueado.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +19,7 @@ export class LoginComponent implements OnInit {
  
  
 
-  constructor(private miRouter: Router, private fb:FormBuilder) { 
+  constructor(private miRouter: Router, private fb:FormBuilder, public miServicio:UsuarioLogueadoService) { 
     this.miUsuario=new Usuarios();
     this.validar=false;
  
@@ -39,20 +38,22 @@ export class LoginComponent implements OnInit {
     var validoUsuario=0;
     listadousuario = JSON.parse(localStorage.getItem("listado") || "{}");
     
-    if(Object.entries(listadousuario).length!=0){
-        
+    if(Object.entries(listadousuario).length!=0){ 
       listadousuario.forEach((element: any): void =>{
         if(element.nombre==this.forma.value.email){
           if(element.clave==this.forma.value.password){
             validoUsuario=1;
+            this.guardarUsuario();
+            this.miServicio.loguear();
             this.miRouter.navigate(["/inicio"]);
+            
           }
-        }else{
-          this.validar=true;
         }
       });
+      this.validar=true;
+          //this.miServicio.desloguear();
     }
-    this.guardarUsuario();
+    
   }
 
   guardarUsuario(){

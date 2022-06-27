@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LogueoGuard } from './guardianes/logueo.guard';
 import { AdivinadorNumericoComponent } from './page/adivinador-numerico/adivinador-numerico.component';
 import { ErrorComponent } from './page/error/error.component';
 import { HomeComponent } from './page/home/home.component';
@@ -11,13 +12,13 @@ import { TatetiComponent } from './page/tateti/tateti.component';
 
 const routes: Routes = [
   {path:"login", component:LoginComponent},
-  {path:"quienSoy", component:QuienSoyComponent},
-  {path:"inicio", component:HomeComponent},
+  {path:"quienSoy", component:QuienSoyComponent, canActivate:[LogueoGuard]},
+  {path:"inicio", component:HomeComponent, canActivate:[LogueoGuard]},
   {path:"registrar",component:RegistroComponent},
   {path:"piedraPapelTijera", component:PiedraPapelTijeraComponent},
   {path:"tateti", component:TatetiComponent},
   {path:"adivinadorNumerico", component:AdivinadorNumericoComponent},
-  {path:"", component:HomeComponent},
+  {path:"", component:LoginComponent},
   {path:"**", component:ErrorComponent}
   
 ];

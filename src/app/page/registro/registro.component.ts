@@ -1,7 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuarios } from 'src/app/clases/usuarios';
+import { UsuarioLogueadoService } from 'src/app/servicios/usuario-logueado.service';
 
 @Component({
   selector: 'app-registro',
@@ -14,9 +16,11 @@ export class RegistroComponent implements OnInit {
   miUsuario:Usuarios;
   validar:boolean;
   registro=0;
+  today: Date = new Date();
+  pipe = new DatePipe('en-US');
   
   
-  public constructor(private miRouter:Router, private fb:FormBuilder) {
+  public constructor(private miRouter:Router, private fb:FormBuilder, public miServicio:UsuarioLogueadoService) {
     this.miUsuario=new Usuarios();
     this.validar=false;
    
@@ -58,10 +62,12 @@ export class RegistroComponent implements OnInit {
         }else if (this.forma.value.password==this.forma.value.pwd){
                 this.miUsuario.nombre=this.forma.value.email;
                 this.miUsuario.clave=this.forma.value.pwd;
+                this.miUsuario.horario= this.pipe.transform(Date.now(), 'dd/MM/yyyy, h:mm:ss a');
                 this.miUsuario.guardar(); 
                 this.validar=false;
-                this.miRouter.navigate(["/inicio"]);
                 console.log("Datos guardados!!");
+                this.miServicio.loguear();
+                this.miRouter.navigate(["/inicio"]);
         }else{
           console.log("Datos incorrectos");
           this.validar=true;

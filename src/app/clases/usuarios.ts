@@ -1,4 +1,3 @@
-import { getLocaleDateFormat } from "@angular/common";
 export class Usuarios {
     nombre:string;
     clave:string;
