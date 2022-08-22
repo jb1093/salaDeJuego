@@ -2,10 +2,12 @@ export class Usuarios {
     nombre:string;
     clave:string;
     horario:any;
+    
     constructor(){
         this.nombre="";
         this.clave="";
         this.horario=null;
+        
     }
 
     guardar(){

@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "saladejuegosald3"
+  },
+  "targets": {
+    "saladejuegosald3": {
+      "hosting": {
+        "salaDeJuegos": [
+          "saladejuegosald3"
+        ]
+      }
+    }
   }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuarios } from 'src/app/clases/usuarios';
+import { JugadoresPremiumService } from 'src/app/servicios/jugadores-premium.service';
 import { UsuarioLogueadoService } from 'src/app/servicios/usuario-logueado.service';
 
 @Component({
@@ -18,16 +19,18 @@ export class RegistroComponent implements OnInit {
   registro=0;
   today: Date = new Date();
   pipe = new DatePipe('en-US');
+  activoPremium=true;
   
   
-  public constructor(private miRouter:Router, private fb:FormBuilder, public miServicio:UsuarioLogueadoService) {
+  public constructor(private miRouter:Router, private fb:FormBuilder, public miServicio:UsuarioLogueadoService, public miPremiumS: JugadoresPremiumService) {
     this.miUsuario=new Usuarios();
     this.validar=false;
    
     this.forma=this.fb.group({
       'email': ['', [Validators.required, Validators.email]],
       'password':['',[Validators.required ]],
-      'pwd':['',[Validators.required ]]
+      'pwd':['',[Validators.required ]],
+      'activoPremium':[]
     });
   }
   
@@ -64,6 +67,7 @@ export class RegistroComponent implements OnInit {
                 this.miUsuario.clave=this.forma.value.pwd;
                 this.miUsuario.horario= this.pipe.transform(Date.now(), 'dd/MM/yyyy, h:mm:ss a');
                 this.miUsuario.guardar(); 
+                this.validarCheck();
                 this.validar=false;
                 console.log("Datos guardados!!");
                 this.miServicio.loguear();
@@ -73,7 +77,14 @@ export class RegistroComponent implements OnInit {
           this.validar=true;
         }
     
-
+        
+  }
+  validarCheck(){
+    if(this.activoPremium==true){
+      this.miPremiumS.jugador=this.forma.value.email;
+      this.miPremiumS.premium="SI";
+      this.miPremiumS.listadoPremium();
+    }
   }
 
 }

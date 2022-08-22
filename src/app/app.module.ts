@@ -13,6 +13,13 @@ import { TatetiComponent } from './page/tateti/tateti.component';
 import { AdivinadorNumericoComponent } from './page/adivinador-numerico/adivinador-numerico.component';
 import { ErrorComponent } from './page/error/error.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PptPremiumComponent } from './page/ppt-premium/ppt-premium.component';
+import { PerfilComponent } from './page/perfil/perfil.component';
+import { ErrorJuegoComponent } from './page/error-juego/error-juego.component';
+import { environment } from '../environments/environment';
+import{AngularFireModule} from'@angular/fire/compat';
+import{AngularFirestoreModule} from'@angular/fire/compat/firestore';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +31,10 @@ import { HttpClientModule } from '@angular/common/http';
     PiedraPapelTijeraComponent,
     TatetiComponent,
     AdivinadorNumericoComponent,
-    ErrorComponent
+    ErrorComponent,
+    PptPremiumComponent,
+    PerfilComponent,
+    ErrorJuegoComponent
     
   ],
   imports: [
@@ -32,7 +42,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+    
     
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/' }],

@@ -6,17 +6,23 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UsuarioLogueadoService {
+  nombre:string;
+  horario:any;
   estadoLogueado=false;
-  constructor(private miRouter: Router) { }
   
+  constructor(private miRouter: Router) {
+    this.nombre="";
+    this.horario=null;
+    }
+    
   loguear(){
     this.estadoLogueado=true; 
-   }
-   desloguear(){
+  }
+  desloguear(){
     this.estadoLogueado=false;
     this.miRouter.navigate(["/login"]);
-
-   }
+  }
+  
 }
 
 

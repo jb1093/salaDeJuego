@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
   validar:boolean;
   today: Date = new Date();
   pipe = new DatePipe('en-US');
- 
+  aux1="";
+  aux2="";
+  
  
 
   constructor(private miRouter: Router, private fb:FormBuilder, public miServicio:UsuarioLogueadoService) { 
@@ -45,25 +47,33 @@ export class LoginComponent implements OnInit {
             validoUsuario=1;
             this.guardarUsuario();
             this.miServicio.loguear();
-            this.miRouter.navigate(["/inicio"]);
-            
+            this.miRouter.navigate(["/inicio"]);    
           }
         }
       });
       this.validar=true;
-          //this.miServicio.desloguear();
+      
     }
     
   }
 
   guardarUsuario(){
     
+    this.miServicio.nombre=this.forma.value.email;
+    this.miServicio.horario= this.pipe.transform(Date.now(), 'dd/MM/yyyy, h:mm:ss a');
     this.miUsuario.nombre=this.forma.value.email;
     this.miUsuario.horario= this.pipe.transform(Date.now(), 'dd/MM/yyyy, h:mm:ss a');
     this.miUsuario.guardarUsuarioLogueado();
   }
 
-  
+  ingresar(){
+    this.aux1="administrador@admin";
+    this.aux2="197";
+    if(this.forma.value.email=="" && this.forma.value.password==""){
+      this.forma.value.email=this.aux1;
+      this.forma.value.password=this.aux2;
+    }
+  }
 
   ngOnInit(): void {
   }

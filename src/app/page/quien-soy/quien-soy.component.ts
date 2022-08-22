@@ -9,6 +9,7 @@ import { QuienSoyService } from 'src/app/service/quien-soy.service';
 export class QuienSoyComponent {
   quiensoy:any;
   
+  
   constructor(private miServicio:QuienSoyService) { 
     this.miServicio.retornarPerfil().subscribe(perfil =>{
                                                           //console.info("servicio: ", perfil);
