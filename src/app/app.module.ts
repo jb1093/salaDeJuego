@@ -19,6 +19,9 @@ import { ErrorJuegoComponent } from './page/error-juego/error-juego.component';
 import { environment } from '../environments/environment';
 import{AngularFireModule} from'@angular/fire/compat';
 import{AngularFirestoreModule} from'@angular/fire/compat/firestore';
+import { MensajePipe } from './pipe/mensaje.pipe';
+import { UsuarioDirective } from './directiva/usuario.directive';
+import { ConexionApiComponent } from './page/conexion-api/conexion-api.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import{AngularFirestoreModule} from'@angular/fire/compat/firestore';
     ErrorComponent,
     PptPremiumComponent,
     PerfilComponent,
-    ErrorJuegoComponent
+    ErrorJuegoComponent,
+    MensajePipe,
+    UsuarioDirective,
+    ConexionApiComponent,
     
   ],
   imports: [

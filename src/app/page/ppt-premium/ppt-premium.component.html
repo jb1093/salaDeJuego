@@ -3,4 +3,13 @@
     {{item}}
 
 </div>
-<input type="button" value="Agregar" (click)="Agregar()">
+<!--input type="button" value="Agregar" (click)="Agregar()"-->
+<div *ngFor="let item of coleccion"> {{item|mensaje}} </div>
+
+<div *ngFor=" let item of coleccionAsync | async">
+    <div [appUsuario]="item"></div>
+</div>
+
+<input type="text" [(ngModel)]="textoMensaje">
+<input type="button" value="Agregar" (click)="agregar()">
+

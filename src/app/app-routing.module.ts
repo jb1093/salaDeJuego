@@ -6,6 +6,7 @@ import { LogueoGuard } from './guardianes/logueo.guard';
 import { PptGuard } from './guardianes/ppt.guard';
 import { TttGuard } from './guardianes/ttt.guard';
 import { AdivinadorNumericoComponent } from './page/adivinador-numerico/adivinador-numerico.component';
+import { ConexionApiComponent } from './page/conexion-api/conexion-api.component';
 import { ErrorComponent } from './page/error/error.component';
 import { HomeComponent } from './page/home/home.component';
 import { LoginComponent } from './page/login/login.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:"adivinadorNumerico", component:AdivinadorNumericoComponent, canActivate:[AdvGuard]},
   {path:"ppt-premium", component:PptPremiumComponent,canActivate:[LogueoGuard, JuegoPremiumGuard] },
   {path:"perfil", component:PerfilComponent,canActivate:[LogueoGuard]},
+  {path:"api", component:ConexionApiComponent},
   {path:"", component:LoginComponent},
   {path:"**", component:ErrorComponent}
   

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Entidades } from 'src/app/calses/entidades';
 import { StorageService } from 'src/app/servicios/storage.service';
 
 @Component({
@@ -8,23 +10,30 @@ import { StorageService } from 'src/app/servicios/storage.service';
 })
 export class PptPremiumComponent implements OnInit {
   title='Firestore';
+  public textoMensaje: string=""; 
+  public coleccion: Array<Entidades>= new Array<Entidades>(); 
+  public coleccionAsync: Observable<Array<Entidades>>;
 
-  public coleccion:Array<string>=new Array<string>();
+   constructor(private firestoreapp: StorageService){
+    firestoreapp.traerColeccionMensajeria().subscribe(t =>{
+      this.coleccion=[];
+      (<Array<any>>t).forEach(element => this.coleccion.push(element))
+    });
+    this.coleccionAsync=this.firestoreapp.traerColeccionMensajeria(); 
+   }
 
-  constructor(private firestoreapp:StorageService) {
-    firestoreapp.trerColeccion().subscribe(t=> 
-      {
-        this.coleccion=[];
-        (<Array<any>>t).forEach(element =>
-          this.coleccion.push(JSON.stringify(element)))
-      });
-  }
+   agregar(){
+    let mensajeAPasar: Entidades=new Entidades();
+    mensajeAPasar.texto=this.textoMensaje;
+    mensajeAPasar.usuario="Bogado julieta";
+    this.firestoreapp.setItemMensajes(mensajeAPasar);
+   }
 
-  ngOnInit(): void {
+
+   ngOnInit(): void {
   }
   
-  Agregar(){
-    this.firestoreapp.setItem()
-  };
+  
+   
 
 }
